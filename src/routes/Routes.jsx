@@ -4,6 +4,7 @@ import ErrorPage from "../ErrorPage";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+import AddMedicine from "../AddMedicine";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "addmedicine",
+        element: <AddMedicine></AddMedicine>,
       },
     ],
   },
