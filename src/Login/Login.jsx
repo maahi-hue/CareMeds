@@ -100,7 +100,7 @@ const Login = () => {
           </div>
         </form>
         <div className="space-y-1">
-          <button className="text-xs hover:underline hover:text-lime-500 text-gray-400">
+          <button className="text-xs hover:underline hover:text-gray-600 text-gray-400">
             Forgot password?
           </button>
         </div>
