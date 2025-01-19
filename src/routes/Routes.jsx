@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../MainLayout";
-import ErrorPage from "../ErrorPage";
-import Home from "../Home/Home";
-import Login from "../Login/Login";
-import SignUp from "../SignUp/SignUp";
-import AddMedicine from "../AddMedicine";
+import ErrorPage from "../pages/ErrorPage";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MainLayout from "../layouts/MainLayout";
+import AddMedicine from "../pages/Dashboard/Seller/AddMedicine";
+import Home from "../pages/Home/Home";
 
 export const router = createBrowserRouter([
   {
@@ -14,20 +16,27 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Home></Home>,
       },
-
+    ],
+  },
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <SignUp /> },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "login",
-        element: <Login></Login>,
-      },
-      {
-        path: "signup",
-        element: <SignUp></SignUp>,
-      },
-      {
-        path: "addmedicine",
-        element: <AddMedicine></AddMedicine>,
+        path: "add-medicine",
+        element: (
+          <PrivateRoute>
+            <AddMedicine></AddMedicine>
+          </PrivateRoute>
+        ),
       },
     ],
   },

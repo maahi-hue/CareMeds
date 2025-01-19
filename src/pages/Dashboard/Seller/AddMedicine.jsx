@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AddMedicineForm from "./AddMedicineForm";
-import useAuth from "./hooks/useAuth";
-import useAxiosSecure from "./hooks/useAxiosSecure";
+import AddMedicineForm from "../../../components/Form/AddMedicineForm";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddMedicine = () => {
   const { user } = useAuth();
