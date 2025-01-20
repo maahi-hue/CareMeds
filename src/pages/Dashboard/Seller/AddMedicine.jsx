@@ -17,7 +17,7 @@ const AddMedicine = () => {
     const image = form.image.value;
     const category = form.category.value;
     const company = form.company.value;
-    const massUnit = form.massUnit.value;
+    const quantity = form.quantity.value;
     const price = parseFloat(form.price.value);
     const discount = parseFloat(form.discount.value) || 0;
 
@@ -34,7 +34,7 @@ const AddMedicine = () => {
       image,
       category,
       company,
-      massUnit,
+      quantity,
       price,
       discount,
       seller,

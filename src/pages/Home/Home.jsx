@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import Medicines from "../../components/Home/Medicines";
+import Carousel from "../../components/Home/Carousel";
 
 const Home = () => {
   return (
@@ -7,7 +7,7 @@ const Home = () => {
       <Helmet>
         <title> CareMeds</title>
       </Helmet>
-      <Medicines />
+      <Carousel></Carousel>
     </div>
   );
 };

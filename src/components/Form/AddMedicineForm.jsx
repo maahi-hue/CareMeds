@@ -99,6 +99,20 @@ const AddMedicineForm = ({ handleSubmit, loading }) => {
                 <option value="ML">ML</option>
               </select>
             </div>
+            {/* Quantity Field */}
+            <div className="space-y-1 text-sm">
+              <label htmlFor="quantity" className="block text-gray-600">
+                Quantity
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border rounded-md bg-white"
+                name="quantity"
+                id="quantity"
+                type="number"
+                placeholder="Enter Quantity"
+                required
+              />
+            </div>
             {/* Per Unit Price */}
             <div className="space-y-1 text-sm">
               <label htmlFor="price" className="block text-gray-600">

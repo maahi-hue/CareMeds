@@ -1,15 +1,19 @@
-import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
+import { AiOutlineMenu } from "react-icons/ai";
+import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
+import Container from "../Container";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-import Container from "../Container";
-import useAuth from "../../../hooks/useAuth";
+import { FaShoppingCart } from "react-icons/fa";
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [cart] = useCart(); // Ensure cart is correctly destructured
 
   return (
-    <div className="fixed w-full bg-blue-950 z-10 shadow-sm">
+    <div className="fixed w-full bg-opacity-80 bg-blue-950 z-10 ">
       <div className="py-4 border-b-[1px]">
         <Container>
           <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
@@ -26,6 +30,14 @@ const Navbar = () => {
                   className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
                 >
                   <AiOutlineMenu />
+                  <Link to="/cart">
+                    <button className="btn">
+                      <FaShoppingCart className="mr-2"></FaShoppingCart>
+                      <div className="badge badge-secondary">
+                        +{cart.length} {/* Cart length should update */}
+                      </div>
+                    </button>
+                  </Link>
                   <div className="hidden md:block">
                     {/* Avatar */}
                     <img
@@ -48,7 +60,6 @@ const Navbar = () => {
                     >
                       Home
                     </Link>
-
                     {user ? (
                       <>
                         <Link
@@ -90,5 +101,4 @@ const Navbar = () => {
     </div>
   );
 };
-
 export default Navbar;

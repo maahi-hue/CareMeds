@@ -7,6 +7,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MainLayout from "../layouts/MainLayout";
 import AddMedicine from "../pages/Dashboard/Seller/AddMedicine";
 import Home from "../pages/Home/Home";
+import Cart from "../pages/Cart/Cart";
+import Medicines from "../components/Home/Medicines";
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +20,19 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+      {
+        path: "shop",
+        element: <Medicines></Medicines>,
+      },
+      {
+        path: "cart",
+        element: <Cart></Cart>,
+      },
     ],
   },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <SignUp /> },
+
   {
     path: "/dashboard",
     element: (
