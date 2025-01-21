@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
-
+import { Pagination } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -11,55 +11,53 @@ import slide4 from "../../assets/images/slide4.jpg";
 import slide5 from "../../assets/images/slide5.jpg";
 import slide6 from "../../assets/images/slide6.jpg";
 
+const medicineCategories = [
+  { name: "Antibiotics", image: slide1, route: "/category/antibiotics" },
+  { name: "Painkillers", image: slide2, route: "/category/painkillers" },
+  { name: "Vitamins", image: slide3, route: "/category/vitamins" },
+  { name: "Antiseptics", image: slide4, route: "/category/antiseptics" },
+  { name: "Cough Syrups", image: slide5, route: "/category/cough-syrups" },
+  {
+    name: "Allergy Medicines",
+    image: slide6,
+    route: "/category/allergy-medicines",
+  },
+];
+
 const Category = () => {
+  const navigate = useNavigate();
+
   return (
-    <section>
+    <section className="pt-0">
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        centeredSlides={true}
         pagination={{
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper mb-24"
+        className="mySwiper my-24"
+        style={{
+          "--swiper-pagination-bottom": "20px", // Adjust pagination position
+          paddingBottom: "50px", // Add padding to the bottom of the Swiper wrapper
+        }}
       >
-        <SwiperSlide>
-          <img src={slide1} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
-            Salads
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide2} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
-            Pizzas
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide3} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
-            Soups
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide4} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
-            Desserts
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide5} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
-            Salads
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide6} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
-            Salads
-          </h3>
-        </SwiperSlide>
+        {medicineCategories.map((category, index) => (
+          <SwiperSlide
+            key={index}
+            onClick={() => navigate(category.route)} // Navigate on click
+            className="relative flex items-center justify-center bg-cover bg-center cursor-pointer"
+            style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${category.image})`, // Dark overlay
+              height: "250px",
+              width: "250px",
+            }}
+          >
+            <h3 className="text-2xl uppercase text-center text-white font-bold">
+              {category.name}
+            </h3>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );
