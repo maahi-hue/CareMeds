@@ -1,54 +1,46 @@
 import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "../pages/ErrorPage";
+import Main from "../Layout/Main";
+import Home from "../pages/Home/Home/Home";
+import Order from "../pages/Order/Order/Order";
+import AddCategory from "../pages/Category/AddCategory/AddCategory";
+import SingleCategory from "../pages/Category/SingleCategory/SingleCategory";
+import AddMedicine from "../pages/Medicines/AddMedicine";
+import Medicines from "../pages/Medicines/Medicines";
 import Login from "../pages/Login/Login";
-import SignUp from "../pages/SignUp/SignUp";
-import PrivateRoute from "./PrivateRoute";
-import DashboardLayout from "../layouts/DashboardLayout";
-import MainLayout from "../layouts/MainLayout";
-import AddMedicine from "../pages/Dashboard/Seller/AddMedicine";
-import Home from "../pages/Home/Home";
-import Cart from "../pages/Cart/Cart";
-import Medicines from "../components/Home/Medicines";
+import Register from "../pages/Register/Register";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
-    errorElement: <ErrorPage />,
+    element: <Main></Main>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
       },
+
       {
-        path: "shop",
+        path: "medicines",
         element: <Medicines></Medicines>,
       },
       {
-        path: "cart",
-        element: <Cart></Cart>,
+        path: "add-category",
+        element: <AddCategory></AddCategory>,
+      },
+      {
+        path: "add-medicine",
+        element: <AddMedicine></AddMedicine>,
+      },
+      {
+        path: "/medicines/category/:categoryName",
+        element: <SingleCategory></SingleCategory>,
+      },
+      {
+        path: "order/:category",
+        element: <Order></Order>,
       },
     ],
   },
   { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
-
-  {
-    path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardLayout />
-      </PrivateRoute>
-    ),
-    children: [
-      {
-        path: "add-medicine",
-        element: (
-          <PrivateRoute>
-            <AddMedicine></AddMedicine>
-          </PrivateRoute>
-        ),
-      },
-    ],
-  },
+  { path: "/signup", element: <Register /> },
 ]);
