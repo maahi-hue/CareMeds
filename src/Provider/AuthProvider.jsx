@@ -5,10 +5,8 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
-  onAuthStateChanged,
 } from "firebase/auth";
 
-import axios from "axios";
 import auth from "../firebase/firebase.config";
 
 export const authContext = createContext();

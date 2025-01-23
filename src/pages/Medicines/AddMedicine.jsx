@@ -10,7 +10,7 @@ const AddMedicine = () => {
     const fetchCategories = async () => {
       try {
         const { data } = await axiosSecure.get(`/categories`);
-        setCategories(data); // Set fetched categories
+        setCategories(data);
       } catch (err) {
         console.error("Error fetching categories:", err);
       } finally {

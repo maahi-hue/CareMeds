@@ -1,39 +1,84 @@
-const MedicineCard = ({ medicine }) => {
-  const {
-    name,
-    genericName,
-    description,
-    image,
-    category,
-    company,
-    quantity,
-    price,
-    discount,
-  } = medicine;
+import useAuth from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router";
+import MedicineModal from "../../components/Modal/MedicineModal";
+import { useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-  const discountedPrice = (price - (price * discount) / 100).toFixed(2);
+const MedicineCard = ({ medicine }) => {
+  const [selectedMedicine, setSelectedMedicine] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosSecure = useAxiosSecure();
+
+  const handleSelect = (medicine) => {
+    if (user && user.email) {
+      const { _id: medicineId, name, image, price } = medicine;
+
+      const cartItem = {
+        medicineId,
+        email: user.email,
+        name,
+        image,
+        price,
+      };
+      axiosSecure
+        .post(`/carts`, cartItem)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.error("Error adding to cart:", error);
+        });
+
+      alert(`Medicine "${name}" selected!`);
+    } else {
+      alert("Please login first.");
+      navigate("/login", { state: { from: location } });
+    }
+  };
+
+  const handleViewDetails = (medicine) => {
+    setSelectedMedicine(medicine);
+    setIsModalOpen(true);
+  };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure>
-        <img src={image} alt={name} className="h-48 w-full object-cover" />
-      </figure>
-      <p className="absolute right-0 mr-4 mt-4 px-4 bg-slate-900 text-white">
-        ${discountedPrice}
-      </p>
-      <div className="card-body flex flex-col items-center">
-        <h2 className="card-title">{name}</h2>
-        <p className="text-sm text-gray-600 italic">{genericName}</p>
-        <p className="text-center">{description}</p>
-        <p className="text-sm text-gray-500">Category: {category}</p>
-        <p className="text-sm text-gray-500">Company: {company}</p>
-        <p className="text-sm text-gray-500">Quantity: {quantity}</p>
-        <p className="text-sm text-gray-500">
-          Price per Unit: ${price} <br />
-          Discount: {discount}%
-        </p>
-      </div>
-    </div>
+    <>
+      <tr key={medicine.id} className="border-b">
+        <td className="px-4 py-2 text-sm text-gray-700">{medicine.name}</td>
+        <td className="px-4 py-2 text-sm text-gray-700">
+          {medicine.genericName}
+        </td>
+        <td className="px-4 py-2 text-sm text-gray-700">{medicine.category}</td>
+        <td className="px-4 py-2 text-sm text-gray-700">{medicine.company}</td>
+        <td className="px-4 py-2 text-sm text-gray-700">
+          ${medicine.pricePerUnit}
+        </td>
+        <td className="px-4 py-2 text-sm text-gray-700">
+          <button
+            className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
+            onClick={() => handleViewDetails(medicine)}
+          >
+            Eye
+          </button>
+          <button
+            className="bg-green-500 text-white px-3 py-1 rounded"
+            onClick={() => handleSelect(medicine)}
+          >
+            Select
+          </button>
+        </td>
+      </tr>
+      {/* Medicine Details Modal */}
+      {isModalOpen && (
+        <MedicineModal
+          medicine={selectedMedicine}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+    </>
   );
 };
 

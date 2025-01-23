@@ -6,9 +6,6 @@ const SingleCategory = () => {
   const location = useLocation();
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Extract category from the query parameters
-  // const queryParams = new URLSearchParams(location.search);
   const { categoryName } = useParams();
   console.log(categoryName);
   useEffect(() => {

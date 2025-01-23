@@ -4,6 +4,7 @@ import MedicineCard from "../../components/MedicineCard/MedicineCard";
 
 const Medicines = () => {
   const [medicines, setMedicines] = useState([]);
+
   useEffect(() => {
     const fetchMedicines = async () => {
       const { data } = await axios.get(
@@ -15,13 +16,38 @@ const Medicines = () => {
   }, []);
 
   return (
-    <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
-      <div>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 ">
-          {medicines.map((medicine) => (
-            <MedicineCard key={medicine._id} medicine={medicine}></MedicineCard>
-          ))}
-        </div>
+    <div className="container px-6 py-10 mx-auto">
+      <h1 className="text-2xl font-bold mb-6">Medicines</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100 border-b">
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Name
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Generic Name
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Category
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Company
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Price Per Unit
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {medicines.map((medicine) => (
+              <MedicineCard key={medicine._id} medicine={medicine} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

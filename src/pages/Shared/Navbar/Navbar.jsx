@@ -2,8 +2,11 @@ import { useEffect, useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/icon/logo.png";
 import { authContext } from "../../../Provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
+  const [cart] = useCart();
   const { user, loading, handleLogout } = useContext(authContext);
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
@@ -89,6 +92,17 @@ const Navbar = () => {
             }
           >
             Shop
+          </NavLink>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "btn bg-[#d68853] font-bold text-[#1c1858]"
+                : "btn bg-base-100 font-bold"
+            }
+          >
+            <FaShoppingCart className="" />
+            <div className="badge badge-outline">+{cart.length}</div>
           </NavLink>
         </ul>
       </div>
