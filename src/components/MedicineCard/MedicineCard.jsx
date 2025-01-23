@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router";
 import MedicineModal from "../../components/Modal/MedicineModal";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 const MedicineCard = ({ medicine }) => {
   const [selectedMedicine, setSelectedMedicine] = useState(null);
@@ -11,6 +12,7 @@ const MedicineCard = ({ medicine }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
 
   const handleSelect = (medicine) => {
     if (user && user.email) {
@@ -26,6 +28,7 @@ const MedicineCard = ({ medicine }) => {
       axiosSecure
         .post(`/carts`, cartItem)
         .then((res) => {
+          refetch();
           console.log(res.data);
         })
         .catch((error) => {
