@@ -33,7 +33,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/add-category">
+                <NavLink to="/dashboard/users">
                   <FaUsers></FaUsers>
                   Manage Users
                 </NavLink>
