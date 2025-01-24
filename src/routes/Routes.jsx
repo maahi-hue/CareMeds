@@ -8,6 +8,9 @@ import AddMedicine from "../pages/Medicines/AddMedicine";
 import Medicines from "../pages/Medicines/Medicines";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Cart from "../pages/Dashboard/Cart/Cart";
+import Dashboard from "../Layout/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +41,20 @@ export const router = createBrowserRouter([
       {
         path: "order/:category",
         element: <Order></Order>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "cart",
+        element: <Cart></Cart>,
       },
     ],
   },

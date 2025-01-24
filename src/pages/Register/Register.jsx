@@ -1,139 +1,154 @@
-import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { authContext } from "../../Provider/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const Register = () => {
-  const { handleGoogleLogin, handleRegister } = useContext(authContext);
-  const [password, setPassword] = useState("");
+  const { createUser, updateUserProfile, signInWithGoogle, loading } =
+    useAuth();
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    if (password.length < 6) {
-      alert("Password length must be at least 6 characters.");
-
-      return;
-    }
-    if (!/[a-z]/.test(password)) {
-      alert("Password must contain at least one lowercase letter.");
-      return;
-    }
-    if (!/[A-Z]/.test(password)) {
-      alert("Password must contain at least one uppercase letter.");
-      return;
-    }
+  // form submit handler
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
 
     try {
-      await handleRegister(email, password);
-      const newUser = { name, email };
-      const response = await fetch(
-        "https://equi-sports-server-kappa.vercel.app/users",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        }
+      //2. User Registration
+      const result = await createUser(email, password);
+
+      //3. Save username & profile photo
+      await updateUserProfile(
+        name,
+        "https://lh3.googleusercontent.com/a/ACg8ocKUMU3XIX-JSUB80Gj_bYIWfYudpibgdwZE1xqmAGxHASgdvCZZ=s96-c"
       );
+      console.log(result);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      alert("Your account has been created.");
-      navigate("/login");
+      navigate("/");
+      alert("Signup Successful");
     } catch (err) {
-      // console.error("Registration error:", err.message);
-      alert("Something went wrong. Please try again.");
+      console.log(err);
+      alert(err?.message);
     }
   };
 
-  const googleLoginHandler = () => {
-    handleGoogleLogin()
-      .then(() => {
-        alert("You are now logged in with Google.");
+  // Handle Google Signin
+  const handleGoogleSignIn = async () => {
+    try {
+      //User Registration using google
+      await signInWithGoogle();
 
-        navigate(location.state?.from || "/");
-      })
-      .catch((err) => {
-        alert(err.message || "An error occurred during login.");
-      });
+      navigate("/");
+      alert("Signup Successful");
+    } catch (err) {
+      console.log(err);
+      alert(err?.message);
+    }
   };
-
   return (
-    <div className="w-5/12 mx-auto p-6">
-      <form onSubmit={handleSubmit}>
-        <h1 className="mb-4 font-bold text-3xl text-center">
-          Registration Form
-        </h1>
-        <div>
-          <label className="input input-bordered flex items-center gap-2">
-            Name
-            <input
-              type="text"
-              className="grow text-xs md:text-base"
-              placeholder="Enter your name"
-              name="name"
-              required
-            />
-          </label>
-          <label className="input input-bordered flex items-center gap-2">
-            Email
-            <input
-              type="email"
-              className="grow text-xs md:text-base"
-              placeholder="Enter your email"
-              name="email"
-              required
-            />
-          </label>
-          <label className="input input-bordered flex items-center gap-2">
-            Photo URL
-            <input
-              type="text"
-              className="grow text-xs md:text-base"
-              placeholder="https://example.com/photo.jpg"
-              name="image"
-            />
-          </label>
-          <label className="input input-bordered flex items-center gap-2 relative">
-            Password
-            <input
-              type="password"
-              className="grow text-xs md:text-base"
-              placeholder="Enter your password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
+        <div className="mb-8 text-center">
+          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
+          <p className="text-sm text-gray-400">Welcome to CareMeds</p>
         </div>
-        <button
-          type="submit"
-          className="btn bg-base-100 hover:bg-[#d68853] hover:text-[#1c1858] font-bold w-full mt-2"
+        <form
+          onSubmit={handleSubmit}
+          noValidate=""
+          action=""
+          className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
-          Register
-        </button>
-        <p className="mt-2 font-semibold">
-          Already registered?{" "}
-          <NavLink className="text-red-600" to="/login">
-            Login here
-          </NavLink>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block mb-2 text-sm">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter Your Name Here"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
+                data-temp-mail-org="0"
+              />
+            </div>
+            <div>
+              <label htmlFor="image" className="block mb-2 text-sm">
+                Select Image:
+              </label>
+              <input
+                required
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block mb-2 text-sm">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                placeholder="Enter Your Email Here"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
+                data-temp-mail-org="0"
+              />
+            </div>
+            <div>
+              <div className="flex justify-between">
+                <label htmlFor="password" className="text-sm mb-2">
+                  Password
+                </label>
+              </div>
+              <input
+                type="password"
+                name="password"
+                autoComplete="new-password"
+                id="password"
+                required
+                placeholder="*******"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" className="bg-white w-full rounded-md py-3">
+              {loading ? (
+                <TbFidgetSpinner className="animate-spin m-auto" />
+              ) : (
+                "Signup"
+              )}
+            </button>
+          </div>
+        </form>
+        <div className="flex items-center pt-4 space-x-1">
+          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+        </div>
+        <div
+          onClick={handleGoogleSignIn}
+          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+        >
+          <FcGoogle size={32} />
+
+          <p>Continue with Google</p>
+        </div>
+        <p className="px-6 text-sm text-center text-gray-400">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="hover:underline hover:text-gray-700 text-gray-600"
+          >
+            Login
+          </Link>
         </p>
-        <p className="mt-2 font-semibold">
-          Or sign up with{" "}
-          <button className="text-red-600" onClick={googleLoginHandler}>
-            Google Account
-          </button>
-        </p>
-      </form>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/icon/logo.png";
-import { authContext } from "../../../Provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [cart] = useCart();
-  const { user, loading, handleLogout } = useContext(authContext);
+  const { user, loading, logOut } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +17,6 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  if (loading) return "loading.......";
 
   return (
     <div
@@ -94,7 +93,7 @@ const Navbar = () => {
             Shop
           </NavLink>
           <NavLink
-            to="/"
+            to="/dashboard/cart"
             className={({ isActive }) =>
               isActive
                 ? "btn bg-[#d68853] font-bold text-[#1c1858]"
@@ -146,7 +145,7 @@ const Navbar = () => {
 
               <li className="mt-2 ">
                 <button
-                  onClick={handleLogout}
+                  onClick={logOut}
                   className="btn bg-base-100 font-bold block text-center hover:bg-[#d68853] hover:text-[#1c1858]"
                 >
                   Logout

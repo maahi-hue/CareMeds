@@ -56,9 +56,7 @@ const MedicineCard = ({ medicine }) => {
         </td>
         <td className="px-4 py-2 text-sm text-gray-700">{medicine.category}</td>
         <td className="px-4 py-2 text-sm text-gray-700">{medicine.company}</td>
-        <td className="px-4 py-2 text-sm text-gray-700">
-          ${medicine.pricePerUnit}
-        </td>
+        <td className="px-4 py-2 text-sm text-gray-700">${medicine.price}</td>
         <td className="px-4 py-2 text-sm text-gray-700">
           <button
             className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
