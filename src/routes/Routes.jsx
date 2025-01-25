@@ -19,6 +19,7 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
         element: <UpdateCategory></UpdateCategory>,
         loader: ({ params }) =>
           fetch(`http://localhost:9000/categories/${params.id}`),
+      },
+      {
+        path: "managePayments",
+        element: <ManagePayments></ManagePayments>,
       },
     ],
   },
