@@ -16,6 +16,7 @@ import AdminRoute from "./AdminRoute";
 import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
 import UpdateCategory from "../pages/Dashboard/updateCategory/updateCategory";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
       {
         path: "users",
