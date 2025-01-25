@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useCategory = () => {
-  const [menu, setCategory] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetch("http://localhost:5000/menu")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
-        setLoading(false);
-      });
-  }, []);
-  return [menu, loading];
+  const axiosPublic = useAxiosPublic();
+  const {
+    data: categories = [],
+    isPending: loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/categories");
+      return res.data;
+    },
+  });
+
+  return [categories, loading, refetch];
 };
 
 export default useCategory;

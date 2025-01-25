@@ -1,51 +1,83 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
   const navigate = useNavigate();
-  // form submit handler
+
+  // Form submit handler
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const role = form.role.value; // Get the selected role
+    const imageFile = form.image.files[0];
 
     try {
-      //2. User Registration
+      // Upload image if provided
+      let imageUrl = "https://via.placeholder.com/150"; // Default placeholder image
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("image", imageFile);
+        const res = await fetch(
+          `https://api.imgbb.com/1/upload?key=${
+            import.meta.env.VITE_IMAGE_HOSTING_KEY
+          }`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const imgData = await res.json();
+        if (imgData.success) {
+          imageUrl = imgData.data.display_url;
+        }
+      }
+
+      // User registration
       const result = await createUser(email, password);
 
-      //3. Save username & profile photo
-      await updateUserProfile(
+      // Save username & profile photo
+      await updateUserProfile(name, imageUrl);
+
+      // Save user data (including role) to the database
+      const userData = {
         name,
-        "https://lh3.googleusercontent.com/a/ACg8ocKUMU3XIX-JSUB80Gj_bYIWfYudpibgdwZE1xqmAGxHASgdvCZZ=s96-c"
-      );
-      console.log(result);
+        email,
+        role,
+        image: imageUrl,
+      };
+      await fetch("http://localhost:9000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
 
       navigate("/");
       alert("Signup Successful");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       alert(err?.message);
     }
   };
 
-  // Handle Google Signin
+  // Handle Google Sign-in
   const handleGoogleSignIn = async () => {
     try {
-      //User Registration using google
       await signInWithGoogle();
-
       navigate("/");
       alert("Signup Successful");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       alert(err?.message);
     }
   };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -56,12 +88,11 @@ const Register = () => {
         <form
           onSubmit={handleSubmit}
           noValidate=""
-          action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="name" className="block mb-2 text-sm">
                 Name
               </label>
               <input
@@ -70,7 +101,7 @@ const Register = () => {
                 id="name"
                 placeholder="Enter Your Name Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
+                required
               />
             </div>
             <div>
@@ -78,11 +109,11 @@ const Register = () => {
                 Select Image:
               </label>
               <input
-                required
                 type="file"
                 id="image"
                 name="image"
                 accept="image/*"
+                className="w-full px-3 py-2"
               />
             </div>
             <div>
@@ -93,30 +124,39 @@ const Register = () => {
                 type="email"
                 name="email"
                 id="email"
-                required
                 placeholder="Enter Your Email Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
+                required
               />
             </div>
             <div>
-              <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm mb-2">
-                  Password
-                </label>
-              </div>
+              <label htmlFor="password" className="block mb-2 text-sm">
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
-                autoComplete="new-password"
                 id="password"
-                required
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
+                required
               />
             </div>
+            <div>
+              <label htmlFor="role" className="block mb-2 text-sm">
+                Select Role
+              </label>
+              <select
+                name="role"
+                id="role"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 text-gray-900"
+                required
+              >
+                <option value="user">User</option>
+                <option value="seller">Seller</option>
+              </select>
+            </div>
           </div>
-
           <div>
             <button type="submit" className="bg-white w-full rounded-md py-3">
               {loading ? (
@@ -128,15 +168,15 @@ const Register = () => {
           </div>
         </form>
         <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+          <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
+          <p className="px-3 text-sm">OR</p>
+          <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
         </div>
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer"
         >
           <FcGoogle size={32} />
-
           <p>Continue with Google</p>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">

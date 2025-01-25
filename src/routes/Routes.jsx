@@ -12,6 +12,10 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
+import UpdateCategory from "../pages/Dashboard/updateCategory/updateCategory";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +63,25 @@ export const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "adminCategories",
+        element: <ManageCategory></ManageCategory>,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "UpdateCategory/:id",
+        element: <UpdateCategory></UpdateCategory>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:9000/categories/${params.id}`),
       },
     ],
   },

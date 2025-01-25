@@ -15,8 +15,6 @@ import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-
-  // TODO: get isAdmin value from the database
   const [isAdmin] = useAdmin();
 
   return (
@@ -39,7 +37,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageItems">
+                <NavLink to="/dashboard/adminCategories">
                   <FaList></FaList>
                   Manage Category
                 </NavLink>
