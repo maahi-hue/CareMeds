@@ -17,6 +17,8 @@ import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
 import UpdateCategory from "../pages/Dashboard/updateCategory/updateCategory";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -59,12 +61,24 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
         path: "cart",
         element: <Cart></Cart>,
       },
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
       },
       {
         path: "users",
@@ -77,10 +91,6 @@ export const router = createBrowserRouter([
       {
         path: "adminCategories",
         element: <ManageCategory></ManageCategory>,
-      },
-      {
-        path: "adminHome",
-        element: <AdminHome></AdminHome>,
       },
       {
         path: "UpdateCategory/:id",

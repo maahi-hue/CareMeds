@@ -66,7 +66,7 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/userHome">
                   <FaHome></FaHome>
-                  Manage banner Advertise
+                  User Home
                 </NavLink>
               </li>
               <li>
@@ -75,16 +75,11 @@ const Dashboard = () => {
                   My Cart ({cart.length})
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/review">
-                  <FaAd></FaAd>
-                  Add a Review
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="/dashboard/paymentHistory">
                   <FaList></FaList>
-                  Real Payment History
+                  Payment History
                 </NavLink>
               </li>
             </>

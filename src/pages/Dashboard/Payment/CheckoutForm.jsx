@@ -15,6 +15,7 @@ const CheckoutForm = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [cart, refetch] = useCart();
+  const navigate = useNavigate();
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
@@ -98,6 +99,7 @@ const CheckoutForm = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/dashboard/paymentHistory");
         }
       }
     }
