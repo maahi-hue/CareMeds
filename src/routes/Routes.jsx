@@ -23,6 +23,7 @@ import SellerHome from "../pages/Dashboard/SellerHome/SellerHome";
 import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines";
 import SellerPayHistory from "../pages/Dashboard/SellerPayHistory/SellerPayHistory";
 import UpdateProfile from "../pages/Shared/Navbar/UpdateProfile";
+import DiscountMedicines from "../pages/Home/DiscountMedicines/DiscountMedicines";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +46,10 @@ export const router = createBrowserRouter([
         path: "add-category",
         element: <AddCategory></AddCategory>,
       },
-
+      {
+        path: "discount",
+        element: <DiscountMedicines></DiscountMedicines>,
+      },
       {
         path: "/medicines/category/:categoryName",
         element: <SingleCategory></SingleCategory>,
