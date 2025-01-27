@@ -21,6 +21,7 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 import SellerHome from "../pages/Dashboard/SellerHome/SellerHome";
 import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines";
+import SellerPayHistory from "../pages/Dashboard/SellerPayHistory/SellerPayHistory";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
         element: <UserHome></UserHome>,
       },
       {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
         path: "cart",
         element: <Cart></Cart>,
       },
@@ -71,10 +76,7 @@ export const router = createBrowserRouter([
         path: "payment",
         element: <Payment></Payment>,
       },
-      {
-        path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
-      },
+      
       {
         path: "sellerHome",
         element: <SellerHome></SellerHome>,
@@ -82,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: "manageMedicines",
         element: <ManageMedicines></ManageMedicines>,
+      },
+      {
+        path: "sellerPayHistory",
+        element: <SellerPayHistory></SellerPayHistory>,
       },
       {
         path: "adminHome",

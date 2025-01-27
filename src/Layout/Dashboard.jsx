@@ -80,7 +80,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/sellerPaymentHistory">
+                <NavLink to="/dashboard/sellerPayHistory">
                   <FaSalesforce />
                   Payment History
                 </NavLink>
