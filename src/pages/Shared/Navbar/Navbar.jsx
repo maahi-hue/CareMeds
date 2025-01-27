@@ -108,7 +108,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {!user && (
           <li className="text-white">
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/login">Join Us</NavLink>
           </li>
         )}
 
@@ -129,24 +129,18 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="space-x-2 menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
-              <li className="  hover:bg-[#d68853] hover:text-[#1c1858] btn bg-base-100 font-bold">
-                <Link to="/addMenu">Add Category</Link>
-              </li>
-
               <li className="btn bg-base-100 font-bold hover:bg-[#d68853] hover:text-[#1c1858]">
-                <Link to="/AddFood">Add Medicine</Link>
+                <Link to="/update-profile">Update Profile</Link>
               </li>
-
               <li className="btn bg-base-100 font-bold hover:bg-[#d68853] hover:text-[#1c1858]">
-                <Link to="/myOrders">My Orders</Link>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
-
-              <li className="mt-2 ">
+              <li>
                 <button
                   onClick={logOut}
-                  className="btn bg-base-100 font-bold block text-center hover:bg-[#d68853] hover:text-[#1c1858]"
+                  className="btn bg-base-100 font-bold hover:bg-[#d68853] hover:text-[#1c1858]"
                 >
                   Logout
                 </button>

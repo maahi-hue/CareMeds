@@ -16,12 +16,21 @@ const MedicineCard = ({ medicine }) => {
 
   const handleSelect = (medicine) => {
     if (user && user.email) {
-      const { _id: medicineId, name, image, price } = medicine;
+      const {
+        _id: medicineId,
+        name,
+        company,
+        quantity,
+        image,
+        price,
+      } = medicine;
 
       const cartItem = {
         medicineId,
         email: user.email,
         name,
+        company,
+        quantity,
         image,
         price,
       };
