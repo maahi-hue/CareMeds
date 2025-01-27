@@ -3,7 +3,6 @@ import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
 import Featured from "../Featured/Featured";
 import Testimonials from "../Testimonials/Testimonials";
-import PopularCategory from "../PopularCategory/PopularCategory";
 import DiscountMedicines from "../DiscountMedicines/DiscountMedicines";
 
 const Home = () => {
@@ -16,9 +15,9 @@ const Home = () => {
       <div className="max-w-screen-xl mx-auto">
         <Category></Category>
         <DiscountMedicines></DiscountMedicines>
-        {/* <PopularCategory></PopularCategory>
+       
         <Featured></Featured>
-        <Testimonials></Testimonials> */}
+        <Testimonials></Testimonials> 
       </div>
     </div>
   );

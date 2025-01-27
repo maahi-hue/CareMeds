@@ -1,45 +1,45 @@
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import { useEffect, useState } from "react";
-import { Rating } from "@smastrom/react-rating";
-import "@smastrom/react-rating/style.css";
+import Lottie from "lottie-react";
+import values from "../../../assets/values.json";
 
 const Testimonials = () => {
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
-
   return (
-    <section className="my-20">
-      <SectionTitle
-        subHeading="What Our Client Say"
-        heading={"Testimonials"}
-      ></SectionTitle>
+    <section className="pb-10 px-8">
+      <h2 className="text-4xl font-bold text-center">Our Values</h2>
 
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        {reviews.map((review) => (
-          <SwiperSlide key={review._id}>
-            <div className="flex flex-col items-center mx-24 my-16">
-              <Rating
-                style={{ maxWidth: 180 }}
-                value={review.rating}
-                readOnly
-              />
-              <p className="py-8">{review.details}</p>
-              <h3 className="text-2xl text-orange-400">{review.name}</h3>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="flex flex-col items-center">
+        <Lottie
+          animationData={values}
+          loop={true}
+          className="w-80 h-80 md:w-96 md:h-96"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold mb-2">Quality</h3>
+          <p className="">
+            We are committed to offering only the highest quality medicines
+            sourced from trusted, verified vendors. Each product is carefully
+            vetted to ensure the best possible care for our customers.
+          </p>
+        </div>
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold mb-2">Customer-Centricity</h3>
+          <p className="">
+            Your health and satisfaction are our top priorities. We aim to
+            provide a seamless shopping experience with fast delivery, secure
+            payments, and responsive customer service.
+          </p>
+        </div>
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold mb-2">Accessibility</h3>
+          <p className="">
+            We believe that everyone deserves access to essential medicines. Our
+            platform is designed to be easy to navigate, ensuring that you can
+            find and purchase what you need with ease, anytime, anywhere.
+          </p>
+        </div>
+      </div>
     </section>
   );
 };
