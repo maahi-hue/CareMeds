@@ -4,7 +4,6 @@ import Home from "../pages/Home/Home/Home";
 import Order from "../pages/Order/Order/Order";
 import AddCategory from "../pages/Category/AddCategory/AddCategory";
 import SingleCategory from "../pages/Category/SingleCategory/SingleCategory";
-import AddMedicine from "../pages/Medicines/AddMedicine";
 import Medicines from "../pages/Medicines/Medicines";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
@@ -20,6 +19,8 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
+import SellerHome from "../pages/Dashboard/SellerHome/SellerHome";
+import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines";
 
 export const router = createBrowserRouter([
   {
@@ -39,10 +40,7 @@ export const router = createBrowserRouter([
         path: "add-category",
         element: <AddCategory></AddCategory>,
       },
-      {
-        path: "add-medicine",
-        element: <AddMedicine></AddMedicine>,
-      },
+
       {
         path: "/medicines/category/:categoryName",
         element: <SingleCategory></SingleCategory>,
@@ -76,6 +74,14 @@ export const router = createBrowserRouter([
       {
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "sellerHome",
+        element: <SellerHome></SellerHome>,
+      },
+      {
+        path: "manageMedicines",
+        element: <ManageMedicines></ManageMedicines>,
       },
       {
         path: "adminHome",
