@@ -18,7 +18,6 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col lg:flex-row">
-  
       <div className="w-full lg:w-64 bg-[#789DBC] text-white font-bold text-xl lg:text-3xl lg:min-h-screen">
         <ul className="menu p-4">
           {isAdmin && (
@@ -94,12 +93,6 @@ const Dashboard = () => {
           {!isAdmin && !isSeller && (
             <>
               <li>
-                <NavLink to="/dashboard/userHome">
-                  <FaHome className="inline-block mr-2" />
-                  User Home
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to="/dashboard/paymentHistory">
                   <FaList className="inline-block mr-2" />
                   Payment History
@@ -123,14 +116,14 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/order/contact">
+            <NavLink to="/contactUs">
               <FaEnvelope className="inline-block mr-2" />
               Contact
             </NavLink>
           </li>
         </ul>
       </div>
-     
+
       <div className="flex-1 p-4 lg:p-8">
         <Outlet />
       </div>

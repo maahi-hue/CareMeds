@@ -26,7 +26,7 @@ const ManagePayments = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl mb-4">Payment Management</h2>
+      <h2 className="text-3xl font-bold text-center p-4">Payment Management</h2>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
@@ -57,7 +57,7 @@ const ManagePayments = () => {
                   {payment.status === "pending" ? (
                     <button
                       onClick={() => handleAcceptPayment(payment._id)}
-                      className="px-4 py-2 bg-green-500 text-white rounded"
+                      className="px-4 py-2 hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold rounded"
                     >
                       Accept Payment
                     </button>

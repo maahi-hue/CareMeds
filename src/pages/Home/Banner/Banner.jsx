@@ -41,10 +41,12 @@ const Banner = () => {
   return (
     <div className="relative h-[60vh]">
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center text-white bg-black bg-opacity-30">
-        <h1 className="text-4xl font-bold mb-2">Welcome to Gourmet Haven</h1>
+        <h1 className="text-4xl font-bold mb-2">
+          Your Trusted Marketplace for Medicines
+        </h1>
         <p className="text-lg">
-          Indulge in a delightful culinary journey with our exquisite dishes
-          crafted to perfection.
+          Explore a wide range of medicines from trusted sellers, all in one
+          place.
         </p>
       </div>
 

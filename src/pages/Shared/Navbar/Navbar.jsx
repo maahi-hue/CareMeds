@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar sticky top-0 z-50 ${
+      className={`navbar px-14 sticky top-0 z-50 ${
         isScrolled ? "bg-opacity-80 bg-[#789DBC]" : "bg-[#789DBC]"
       } transition-all duration-300 text-white`}
     >
@@ -79,7 +79,7 @@ const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <img className="h-20" src={logo}></img>
+        <img className="h-10" src={logo}></img>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-2">

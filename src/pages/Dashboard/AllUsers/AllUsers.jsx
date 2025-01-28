@@ -56,8 +56,8 @@ const AllUsers = () => {
   return (
     <div>
       <div className="flex justify-evenly my-4">
-        <h2 className="text-3xl">All Users</h2>
-        <h2 className="text-3xl">Total Users: {users.length}</h2>
+        <h2 className="text-3xl font-bold">All Users</h2>
+        <h2 className="text-3xl font-bold">Total Users: {users.length}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">

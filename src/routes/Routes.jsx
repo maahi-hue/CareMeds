@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
-import Order from "../pages/Order/Order/Order";
-import AddCategory from "../pages/Category/AddCategory/AddCategory";
 import SingleCategory from "../pages/Category/SingleCategory/SingleCategory";
 import Medicines from "../pages/Medicines/Medicines";
 import Login from "../pages/Login/Login";
@@ -17,7 +15,6 @@ import UpdateCategory from "../pages/Dashboard/updateCategory/updateCategory";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
-import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 import SellerHome from "../pages/Dashboard/SellerHome/SellerHome";
 import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines";
@@ -27,6 +24,7 @@ import DiscountMedicines from "../pages/Home/DiscountMedicines/DiscountMedicines
 import ManageBannerAdvertise from "../components/Dashboard/ManageBannerAdvertise/ManageBannerAdvertise";
 import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAdvertisement";
 import DashboardRedirect from "../pages/Dashboard/DashboardRedirects/DashboardRedirects";
+import ContactUs from "../pages/Home/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -50,8 +48,8 @@ export const router = createBrowserRouter([
         element: <Cart></Cart>,
       },
       {
-        path: "add-category",
-        element: <AddCategory></AddCategory>,
+        path: "contactUs",
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "discount",
@@ -60,10 +58,6 @@ export const router = createBrowserRouter([
       {
         path: "/medicines/category/:categoryName",
         element: <SingleCategory></SingleCategory>,
-      },
-      {
-        path: "order/:category",
-        element: <Order></Order>,
       },
     ],
   },
@@ -79,10 +73,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <DashboardRedirect />,
       },
-      {
-        path: "userHome",
-        element: <UserHome></UserHome>,
-      },
+
       {
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,

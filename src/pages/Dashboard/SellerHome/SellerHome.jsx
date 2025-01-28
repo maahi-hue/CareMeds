@@ -4,20 +4,18 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaDollarSign, FaShoppingCart, FaMoneyBillWave } from "react-icons/fa";
 
 const SellerHome = () => {
-  const { user } = useAuth(); // Fetch the logged-in user's info
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  // Fetch stats for the seller
   const { data: stats = [] } = useQuery({
     queryKey: ["seller-stats", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/seller-stats/${user?.email}`);
       return res.data;
     },
-    enabled: !!user?.email, // Ensure query runs only if email exists
+    enabled: !!user?.email,
   });
 
-  // Calculate aggregated stats
   const revenue = stats.reduce((acc, item) => acc + item.price, 0);
   const orders = stats.length;
   const paidTotal = stats
@@ -29,11 +27,10 @@ const SellerHome = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-3xl mb-6">
+      <h2 className="text-3xl font-bold text-center mb-8">
         Hi, Welcome {user?.displayName ? user.displayName : "Seller"}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Revenue Stat */}
         <div className="stat bg-white shadow-lg p-4 rounded-lg text-center">
           <div className="stat-figure text-secondary">
             <FaDollarSign className="text-4xl mx-auto text-blue-500" />
@@ -46,7 +43,6 @@ const SellerHome = () => {
           </div>
         </div>
 
-        {/* Orders Stat */}
         <div className="stat bg-white shadow-lg p-4 rounded-lg text-center">
           <div className="stat-figure text-secondary">
             <FaShoppingCart className="text-4xl mx-auto text-red-500" />
@@ -59,7 +55,6 @@ const SellerHome = () => {
           </div>
         </div>
 
-        {/* Paid Total Stat */}
         <div className="stat bg-white shadow-lg p-4 rounded-lg text-center">
           <div className="stat-figure text-secondary">
             <FaMoneyBillWave className="text-4xl mx-auto text-purple-500" />
@@ -72,7 +67,6 @@ const SellerHome = () => {
           </div>
         </div>
 
-        {/* Pending Total Stat */}
         <div className="stat bg-white shadow-lg p-4 rounded-lg text-center">
           <div className="stat-figure text-secondary">
             <FaMoneyBillWave className="text-4xl mx-auto text-orange-500" />
