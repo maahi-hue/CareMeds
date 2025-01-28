@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
@@ -15,12 +16,11 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const role = form.role.value; // Get the selected role
+    const role = form.role.value;
     const imageFile = form.image.files[0];
 
     try {
-      // Upload image if provided
-      let imageUrl = "https://via.placeholder.com/150"; // Default placeholder image
+      let imageUrl = "https://via.placeholder.com/150";
       if (imageFile) {
         const formData = new FormData();
         formData.append("image", imageFile);
@@ -39,20 +39,17 @@ const Register = () => {
         }
       }
 
-      // User registration
       const result = await createUser(email, password);
 
-      // Save username & profile photo
       await updateUserProfile(name, imageUrl);
 
-      // Save user data (including role) to the database
       const userData = {
         name,
         email,
         role,
         image: imageUrl,
       };
-      await fetch("http://localhost:9000/users", {
+      await fetch("https://server-plum-pi-16.vercel.app/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
@@ -66,7 +63,6 @@ const Register = () => {
     }
   };
 
-  // Handle Google Sign-in
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle();
@@ -80,6 +76,9 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
+      <Helmet>
+        <title>CareMeds | Register</title>
+      </Helmet>
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Sign Up</h1>

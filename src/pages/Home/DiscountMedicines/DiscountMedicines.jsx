@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Pagination, Autoplay } from "swiper/modules";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const DiscountMedicines = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [discountedMedicines, setDiscountedMedicines] = useState([]);
 
   useEffect(() => {
-    axiosSecure
+    axiosPublic
       .get("/medicines")
       .then((response) => {
         const discountedItems = response.data.filter(

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageBannerAdvertise = () => {
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchMedicines = async () => {
       try {
-        const { data } = await axios.get("/medicines");
+        const { data } = await axiosSecure.get("/medicines");
 
         if (Array.isArray(data)) {
           setMedicines(data);
@@ -29,7 +31,7 @@ const ManageBannerAdvertise = () => {
 
   const toggleMedicineSlider = async (id, isInSlider) => {
     try {
-      const { data } = await axios.patch(`/medicines/${id}`, {
+      const { data } = await axiosSecure.patch(`/medicines/${id}`, {
         isInSlider: !isInSlider,
       });
 

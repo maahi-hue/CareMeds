@@ -12,7 +12,6 @@ const DashboardRedirect = () => {
   if (isSeller) {
     return <Navigate to="sellerHome" replace />;
   }
-  return <Navigate to="paymentHistory" replace />;
 };
 
 export default DashboardRedirect;

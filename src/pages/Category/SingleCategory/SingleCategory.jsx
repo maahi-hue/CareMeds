@@ -1,19 +1,21 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import MedicineCard from "../../../components/MedicineCard/MedicineCard";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const SingleCategory = () => {
+  const axiosPublic = useAxiosPublic();
   const location = useLocation();
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
   const { categoryName } = useParams();
-  console.log(categoryName);
+  // console.log(categoryName);
   useEffect(() => {
     const fetchMedicines = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(
+        const { data } = await axiosPublic.get(
           `${import.meta.env.VITE_API_URL}/mediciness/${categoryName}`
         );
         setMedicines(data);
@@ -32,6 +34,9 @@ const SingleCategory = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>CareMeds | Category</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Medicines in {categoryName}</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200">

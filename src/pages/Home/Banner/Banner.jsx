@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
@@ -8,16 +7,18 @@ import img1 from "../../../assets/home/1.jpg";
 import img2 from "../../../assets/home/2.jpg";
 import img3 from "../../../assets/home/3.jpg";
 import img4 from "../../../assets/home/4.jpg";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Banner = () => {
+  const axiosPublic = useAxiosPublic();
   const [sliderMedicines, setSliderMedicines] = useState([]);
 
   useEffect(() => {
     const fetchSliderMedicines = async () => {
       try {
-        const { data } = await axios.get("/medicines?isInSlider=true");
+        const { data } = await axiosPublic.get("/medicines?isInSlider=true");
         setSliderMedicines(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching slider medicines:", error);

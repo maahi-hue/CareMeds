@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import CategoryItem from "../../Shared/CategoryItem/CategoryItem";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import axios from "axios";
 
 const Category = () => {
+  const axiosPublic = useAxiosPublic();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const { data: filteredCategories } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/filtered-categories`
+          `/filtered-categories`
         );
 
-        const { data: manualCategories } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/categories`
-        );
+        const { data: manualCategories } = await axiosPublic.get(`/categories`);
 
         const allCategories = [
           ...manualCategories,

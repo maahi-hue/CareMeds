@@ -3,6 +3,7 @@ import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -77,6 +78,9 @@ const Cart = () => {
 
   return (
     <div className="container px-6 my-10">
+      <Helmet>
+        <title>CareMeds | Cart</title>
+      </Helmet>
       <div className="flex justify-between items-center my-10">
         <div>
           <h2 className="text-2xl font-bold">Total Items: {cart.length}</h2>

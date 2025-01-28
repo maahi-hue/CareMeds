@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AskForAdvertisement = () => {
+  const axiosSecure = useAxiosSecure();
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -12,8 +14,8 @@ const AskForAdvertisement = () => {
   useEffect(() => {
     const fetchMedicines = async () => {
       try {
-        const { data } = await axios.get("/medicines/seller");
-        setMedicines(Array.isArray(data) ? data : []); 
+        const { data } = await axiosSecure.get("/medicines/seller");
+        setMedicines(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching medicines:", error);
       } finally {
@@ -31,7 +33,7 @@ const AskForAdvertisement = () => {
     }
 
     try {
-      const response = await axios.post("/api/advertisements", {
+      const response = await axiosSecure.post("/api/advertisements", {
         medicineId: selectedMedicine._id,
         image: advertisementImage,
         description: advertisementDescription,
@@ -42,7 +44,7 @@ const AskForAdvertisement = () => {
         setShowModal(false);
         setAdvertisementImage("");
         setAdvertisementDescription("");
-        fetchMedicines(); 
+        fetchMedicines();
       }
     } catch (error) {
       console.error("Error adding advertisement:", error);
@@ -51,7 +53,7 @@ const AskForAdvertisement = () => {
 
   const handleToggleSliderStatus = async (medicineId, isInSlider) => {
     try {
-      const { data } = await axios.patch(`/medicines/${medicineId}`, {
+      const { data } = await axiosSecure.patch(`/medicines/${medicineId}`, {
         isInSlider,
       });
       setMedicines((prevMedicines) =>
@@ -70,6 +72,9 @@ const AskForAdvertisement = () => {
 
   return (
     <div className="container">
+      <Helmet>
+        <title>CareMeds | Ask for Advertisement</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-6">Ask for Advertisement</h1>
       <table className="min-w-full bg-white border border-gray-200">
         <thead>

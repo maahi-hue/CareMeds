@@ -1,10 +1,10 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import useCategory from "../../../hooks/useCategory";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ManageCategory = () => {
   const [categories, , refetch] = useCategory();
@@ -70,6 +70,9 @@ const ManageCategory = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>CareMeds | Manage Categories</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-center p-4">All Categories</h1>
 
       <div className="mb-6">

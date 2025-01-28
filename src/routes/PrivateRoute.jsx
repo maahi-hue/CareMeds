@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
-import { FaSpinner } from "react-icons/fa";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const location = useLocation();
 
   if (user) return children;

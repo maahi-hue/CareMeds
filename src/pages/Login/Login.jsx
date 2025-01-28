@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, user } = useAuth();
@@ -24,7 +25,7 @@ const Login = () => {
       navigate(from, { replace: true });
       alert("Login Successful");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       alert(err?.message);
     }
   };
@@ -32,7 +33,7 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
@@ -41,7 +42,7 @@ const Login = () => {
         axiosPublic
           .post("/users", userInfo)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             navigate("/");
           })
           .catch((error) => {
@@ -55,6 +56,9 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
+      <Helmet>
+        <title>CareMeds | Login</title>
+      </Helmet>
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Log In</h1>

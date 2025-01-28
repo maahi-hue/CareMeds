@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import MedicineCard from "../../components/MedicineCard/MedicineCard";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Medicines = () => {
+  const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
   const [sortedMedicines, setSortedMedicines] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,9 +21,7 @@ const Medicines = () => {
 
   useEffect(() => {
     const fetchMedicines = async () => {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/medicines?search=${search}`
-      );
+      const { data } = await axiosPublic.get(`/medicines?search=${search}`);
       const formattedData = data.map((medicine) => ({
         ...medicine,
         price: parseFloat(medicine.price),
@@ -37,6 +37,9 @@ const Medicines = () => {
 
   return (
     <div className="mx-auto container px-6 py-10">
+      <Helmet>
+        <title>CareMeds | Medicines</title>
+      </Helmet>
       <h1 className="text-4xl text-center font-bold mb-6">Medicines</h1>
       <div className="flex justify-between">
         <div className="w-1/3 flex p-1 my-4 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">

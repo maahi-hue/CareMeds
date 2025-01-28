@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const SellerPayHistory = () => {
   const axiosSecure = useAxiosSecure();
@@ -27,6 +28,9 @@ const SellerPayHistory = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>CareMeds | Seller Payment History</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Payment History</h1>
       {loading ? (
         <p>Loading...</p>

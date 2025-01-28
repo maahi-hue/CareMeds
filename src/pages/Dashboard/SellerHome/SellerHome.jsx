@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaDollarSign, FaShoppingCart, FaMoneyBillWave } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const SellerHome = () => {
   const { user } = useAuth();
@@ -27,6 +28,9 @@ const SellerHome = () => {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>CareMeds | Seller Home</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center mb-8">
         Hi, Welcome {user?.displayName ? user.displayName : "Seller"}
       </h2>

@@ -38,7 +38,7 @@ const MedicineCard = ({ medicine }) => {
         .post(`/carts`, cartItem)
         .then((res) => {
           refetch();
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((error) => {
           console.error("Error adding to cart:", error);

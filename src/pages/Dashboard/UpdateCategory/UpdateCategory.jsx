@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -26,12 +26,11 @@ const UpdateCategory = () => {
         name: data.name,
         image: res.data.data.display_url,
       };
-      //
       const categoryRes = await axiosSecure.patch(
         `/categories/${_id}`,
         category
       );
-      console.log(categoryRes.data);
+      // console.log(categoryRes.data);
       if (categoryRes.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
@@ -46,12 +45,15 @@ const UpdateCategory = () => {
 
   return (
     <div>
-      <SectionTitle heading="Update Category"></SectionTitle>
+      <Helmet>
+        <title>CareMeds | Update Category</title>
+      </Helmet>
+      <h1 className="text-3xl font-bold text-center mb-8">Update Category</h1>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full my-6">
             <label className="label">
-              <span className="label-text">Category Name*</span>
+              <span className="label-text">Category Name</span>
             </label>
             <input
               type="text"

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const ManageMedicines = () => {
   const { user } = useAuth();
@@ -54,6 +55,9 @@ const ManageMedicines = () => {
 
   return (
     <div className="p-4 ">
+      <Helmet>
+        <title>CareMeds | Manage Medicines</title>
+      </Helmet>
       <h2 className="text-4xl text-center font-bold mb-6">Medicines</h2>
 
       <button

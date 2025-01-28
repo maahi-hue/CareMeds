@@ -8,6 +8,7 @@ import {
   FaShoppingCart,
   FaMoneyBillWave,
 } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const AdminHome = () => {
   const { user } = useAuth();
@@ -23,11 +24,13 @@ const AdminHome = () => {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>CareMeds | Admin Home</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center mb-8">
         Hi, Welcome {user?.displayName ? user.displayName : "Back"}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-
         <div className="stat bg-white shadow-lg p-4 rounded-lg text-center">
           <div className="stat-figure text-secondary">
             <FaDollarSign className="text-4xl mx-auto text-blue-500" />

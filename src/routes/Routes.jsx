@@ -25,11 +25,15 @@ import ManageBannerAdvertise from "../components/Dashboard/ManageBannerAdvertise
 import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAdvertisement";
 import DashboardRedirect from "../pages/Dashboard/DashboardRedirects/DashboardRedirects";
 import ContactUs from "../pages/Home/ContactUs/ContactUs";
+import SellerRoute from "./SellerRoute";
+import Errorpage from "../pages/Errorpage/Errorpage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+
+    errorElement: <Errorpage></Errorpage>,
     children: [
       {
         path: "/",
@@ -37,7 +41,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "update-profile",
-        element: <UpdateProfile></UpdateProfile>,
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "medicines",
@@ -45,11 +53,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <Cart></Cart>,
+        element: (
+          <PrivateRoute>
+            <Cart></Cart>
+          </PrivateRoute>
+        ),
       },
       {
         path: "contactUs",
-        element: <ContactUs></ContactUs>,
+        element: (
+          <PrivateRoute>
+            <ContactUs></ContactUs>
+          </PrivateRoute>
+        ),
       },
       {
         path: "discount",
@@ -76,58 +92,123 @@ export const router = createBrowserRouter([
 
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory></PaymentHistory>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "sellerHome",
-        element: <SellerHome></SellerHome>,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <SellerHome></SellerHome>
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageMedicines",
-        element: <ManageMedicines></ManageMedicines>,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <ManageMedicines></ManageMedicines>
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "sellerPayHistory",
-        element: <SellerPayHistory></SellerPayHistory>,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <SellerPayHistory></SellerPayHistory>
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "askAds",
-        element: <AskForAdvertisement></AskForAdvertisement>,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <AskForAdvertisement></AskForAdvertisement>
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminHome></AdminHome>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "users",
         element: (
-          <AdminRoute>
-            <AllUsers></AllUsers>
-          </AdminRoute>
+          <PrivateRoute>
+            {" "}
+            <AdminRoute>
+              <AllUsers></AllUsers>
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "adminCategories",
-        element: <ManageCategory></ManageCategory>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageCategory></ManageCategory>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "UpdateCategory/:id",
-        element: <UpdateCategory></UpdateCategory>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <UpdateCategory></UpdateCategory>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:9000/categories/${params.id}`),
+          fetch(`https://server-plum-pi-16.vercel.app/categories/${params.id}`),
       },
       {
         path: "managePayments",
-        element: <ManagePayments></ManagePayments>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManagePayments></ManagePayments>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageBanner",
-        element: <ManageBannerAdvertise></ManageBannerAdvertise>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageBannerAdvertise></ManageBannerAdvertise>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },
