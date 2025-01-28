@@ -36,11 +36,11 @@ const Category = () => {
   }, []);
 
   return (
-    <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
-      <h1 className="text-2xl font-bold">Categories</h1>
-      <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-3 lg:grid-cols-4 ">
+    <div className="container px-6 mt-20">
+      <h1 className="text-4xl my-4 text-center font-bold">Categories</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8 xl:mt-16 place-items-center">
         {categories.map((category) => (
-          <div key={category.name}>
+          <div key={category.name} className="w-full max-w-[300px] mx-auto">
             <CategoryItem category={category}></CategoryItem>
           </div>
         ))}

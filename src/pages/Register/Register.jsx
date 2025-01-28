@@ -158,7 +158,10 @@ const Register = () => {
             </div>
           </div>
           <div>
-            <button type="submit" className="bg-white w-full rounded-md py-3">
+            <button
+              type="submit"
+              className="bg-[#789DBC] text-white font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858] w-full rounded-md py-3"
+            >
               {loading ? (
                 <TbFidgetSpinner className="animate-spin m-auto" />
               ) : (
@@ -174,16 +177,16 @@ const Register = () => {
         </div>
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer"
+          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858]"
         >
           <FcGoogle size={32} />
           <p>Continue with Google</p>
         </div>
-        <p className="px-6 text-sm text-center text-gray-400">
+        <p className="px-6 font-semibold text-sm text-center text-gray-400">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="hover:underline hover:text-gray-700 text-gray-600"
+            className="hover:underline hover:text-red-800 text-gray-600"
           >
             Login
           </Link>

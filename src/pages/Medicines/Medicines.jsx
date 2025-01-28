@@ -37,7 +37,7 @@ const Medicines = () => {
 
   return (
     <div className="mx-auto container px-6 py-10">
-      <h1 className="text-2xl font-bold mb-6">Medicines</h1>
+      <h1 className="text-4xl text-center font-bold mb-6">Medicines</h1>
       <div className="flex justify-between">
         <div className="w-1/3 flex p-1 my-4 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
           <input
@@ -49,7 +49,7 @@ const Medicines = () => {
             aria-label="Enter Medicine Name"
           />
 
-          <button className="px-1 flex-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-[#141136] rounded-md hover:bg-[#d68853] hover:text-[#1c1858] focus:bg-[#141136] focus:outline-none">
+          <button className="px-1 flex-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-[#141136] rounded-md hover:bg-[#FFE3E3] hover:text-[#1c1858] focus:bg-[#141136] focus:outline-none">
             Search
           </button>
         </div>
@@ -81,7 +81,7 @@ const Medicines = () => {
               <ul className="absolute left-0 mt-2 w-48 bg-white border border-gray-300 rounded shadow-lg z-10">
                 <li>
                   <button
-                    className="block w-full text-left px-4 py-2 hover:bg-[#84a98c] hover:text-white"
+                    className="block w-full text-left px-4 py-2 hover:bg-[#FFE3E3] hover:text-[#1c1858]"
                     onClick={() => sortMedicines("asc")}
                   >
                     Price: Low to High
@@ -89,7 +89,7 @@ const Medicines = () => {
                 </li>
                 <li>
                   <button
-                    className="block w-full text-left px-4 py-2 hover:bg-[#84a98c] hover:text-white"
+                    className="block w-full text-left px-4 py-2 hover:bg-[#FFE3E3] hover:text-[#1c1858]"
                     onClick={() => sortMedicines("desc")}
                   >
                     Price: High to Low

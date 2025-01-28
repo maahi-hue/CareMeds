@@ -76,8 +76,8 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-8">
+    <div className="container px-6 my-10">
+      <div className="flex justify-between items-center my-10">
         <div>
           <h2 className="text-2xl font-bold">Total Items: {cart.length}</h2>
           <h2 className="text-2xl font-bold">
@@ -88,7 +88,7 @@ const Cart = () => {
           {cart.length ? (
             <button
               onClick={handleClearCart}
-              className="btn btn-warning text-white"
+              className="btn hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold"
             >
               Clear All
             </button>
@@ -99,7 +99,9 @@ const Cart = () => {
           )}
           {cart.length ? (
             <Link to="/dashboard/payment">
-              <button className="btn btn-primary ml-4">Pay</button>
+              <button className="btn hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold ml-4">
+                Pay
+              </button>
             </Link>
           ) : (
             <button disabled className="btn btn-primary ml-4">

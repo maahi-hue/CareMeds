@@ -26,7 +26,7 @@ const UpdateProfile = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Update Profile</h1>
+      <h1 className="text-3xl text-center font-bold my-8">Update Profile</h1>
       <form onSubmit={handleUpdate} className="space-y-4 max-w-md mx-auto">
         <div>
           <label className="block font-bold mb-2" htmlFor="name">
@@ -66,7 +66,7 @@ const UpdateProfile = () => {
         </div>
         <button
           type="submit"
-          className="btn bg-[#8e3636] text-white w-full hover:bg-[#6c2929]"
+          className="btn bg-[#789DBC] text-white w-full font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858]"
         >
           Update Profile
         </button>

@@ -24,6 +24,9 @@ import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines"
 import SellerPayHistory from "../pages/Dashboard/SellerPayHistory/SellerPayHistory";
 import UpdateProfile from "../pages/Shared/Navbar/UpdateProfile";
 import DiscountMedicines from "../pages/Home/DiscountMedicines/DiscountMedicines";
+import ManageBannerAdvertise from "../components/Dashboard/ManageBannerAdvertise/ManageBannerAdvertise";
+import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAdvertisement";
+import DashboardRedirect from "../pages/Dashboard/DashboardRedirects/DashboardRedirects";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "medicines",
         element: <Medicines></Medicines>,
+      },
+      {
+        path: "cart",
+        element: <Cart></Cart>,
       },
       {
         path: "add-category",
@@ -69,6 +76,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <DashboardRedirect />,
+      },
+      {
         path: "userHome",
         element: <UserHome></UserHome>,
       },
@@ -76,15 +87,11 @@ export const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>,
       },
-      {
-        path: "cart",
-        element: <Cart></Cart>,
-      },
+
       {
         path: "payment",
         element: <Payment></Payment>,
       },
-
       {
         path: "sellerHome",
         element: <SellerHome></SellerHome>,
@@ -96,6 +103,10 @@ export const router = createBrowserRouter([
       {
         path: "sellerPayHistory",
         element: <SellerPayHistory></SellerPayHistory>,
+      },
+      {
+        path: "askAds",
+        element: <AskForAdvertisement></AskForAdvertisement>,
       },
       {
         path: "adminHome",
@@ -122,6 +133,10 @@ export const router = createBrowserRouter([
       {
         path: "managePayments",
         element: <ManagePayments></ManagePayments>,
+      },
+      {
+        path: "manageBanner",
+        element: <ManageBannerAdvertise></ManageBannerAdvertise>,
       },
     ],
   },

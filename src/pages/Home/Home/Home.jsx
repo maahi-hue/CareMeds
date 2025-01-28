@@ -9,15 +9,15 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Home</title>
+        <title>CareMeds | Home</title>
       </Helmet>
       <Banner></Banner>
       <div className="max-w-screen-xl mx-auto">
         <Category></Category>
         <DiscountMedicines></DiscountMedicines>
-       
+
         <Featured></Featured>
-        <Testimonials></Testimonials> 
+        <Testimonials></Testimonials>
       </div>
     </div>
   );

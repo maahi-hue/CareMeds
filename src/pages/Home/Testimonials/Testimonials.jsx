@@ -3,7 +3,7 @@ import values from "../../../assets/values.json";
 
 const Testimonials = () => {
   return (
-    <section className="pb-10 px-8">
+    <section className="my-10 px-8">
       <h2 className="text-4xl font-bold text-center">Our Values</h2>
 
       <div className="flex flex-col items-center">

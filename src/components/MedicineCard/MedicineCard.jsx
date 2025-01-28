@@ -67,18 +67,20 @@ const MedicineCard = ({ medicine }) => {
         <td className="px-4 py-2 text-sm text-gray-700">{medicine.company}</td>
         <td className="px-4 py-2 text-sm text-gray-700">${medicine.price}</td>
         <td className="px-4 py-2 text-sm text-gray-700">
-          <button
-            className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
-            onClick={() => handleViewDetails(medicine)}
-          >
-            Eye
-          </button>
-          <button
-            className="bg-green-500 text-white px-3 py-1 rounded"
-            onClick={() => handleSelect(medicine)}
-          >
-            Select
-          </button>
+          <div className="flex space-x-2">
+            <button
+              className="btn bg-[#789DBC] text-white font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858] px-4 py-2 rounded transition"
+              onClick={() => handleViewDetails(medicine)}
+            >
+              Eye
+            </button>
+            <button
+              className="btn bg-[#789DBC] text-white font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858] px-4 py-2 rounded transition"
+              onClick={() => handleSelect(medicine)}
+            >
+              Select
+            </button>
+          </div>
         </td>
       </tr>
       {/* Medicine Details Modal */}

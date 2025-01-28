@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   if (user) return <Navigate to={from} replace={true} />;
-  // form submit handler
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -19,7 +19,6 @@ const Login = () => {
     const password = form.password.value;
 
     try {
-      //User Login
       await signIn(email, password);
 
       navigate(from, { replace: true });
@@ -30,7 +29,6 @@ const Login = () => {
     }
   };
 
-  // Handle Google Signin
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -40,7 +38,6 @@ const Login = () => {
           name: result.user?.displayName,
         };
 
-        // Send user info to the server
         axiosPublic
           .post("/users", userInfo)
           .then((res) => {
@@ -105,7 +102,10 @@ const Login = () => {
           </div>
 
           <div>
-            <button type="submit" className="bg-white w-full rounded-md py-3">
+            <button
+              type="submit"
+              className="bg-[#789DBC] text-white w-full font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858] rounded-md py-3"
+            >
               {loading ? (
                 <TbFidgetSpinner className="animate-spin m-auto" />
               ) : (
@@ -114,28 +114,24 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className="space-y-1">
-          <button className="text-xs hover:underline hover:text-gray-600 text-gray-400">
-            Forgot password?
-          </button>
-        </div>
+
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858]"
         >
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
         </div>
-        <p className="px-6 text-sm text-center text-gray-400">
+        <p className="px-6 text-sm font-semibold text-center text-gray-400">
           Don&apos;t have an account yet?{" "}
           <Link
             to="/signup"
-            className="hover:underline hover:text-lime-500 text-gray-600"
+            className="hover:underline hover:text-red-800 text-gray-600"
           >
             Sign up
           </Link>

@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <div
       className={`navbar sticky top-0 z-50 ${
-        isScrolled ? "bg-opacity-80 bg-[#8e3636]" : "bg-[#8e3636]"
+        isScrolled ? "bg-opacity-80 bg-[#789DBC]" : "bg-[#789DBC]"
       } transition-all duration-300 text-white`}
     >
       <div className="navbar-start">
@@ -50,7 +50,7 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "btn bg-[#d68853] font-bold text-[#1c1858]"
+                  ? "btn bg-[#FFE3E3] font-bold text-[#1c1858]"
                   : "btn bg-base-100 font-bold"
               }
             >
@@ -60,11 +60,22 @@ const Navbar = () => {
               to="/medicines"
               className={({ isActive }) =>
                 isActive
-                  ? "btn bg-[#d68853] font-bold text-[#1c1858]"
+                  ? "btn bg-[#FFE3E3] font-bold text-[#1c1858]"
                   : "btn bg-base-100 font-bold"
               }
             >
               Shop
+            </NavLink>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                isActive
+                  ? "btn bg-[#FFE3E3] font-bold text-[#1c1858]"
+                  : "btn bg-base-100 font-bold"
+              }
+            >
+              <FaShoppingCart className="" />
+              <div className="badge badge-outline">+{cart.length}</div>
             </NavLink>
           </ul>
         </div>
@@ -76,7 +87,7 @@ const Navbar = () => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#d68853] font-bold text-[#1c1858]"
+                ? "btn bg-[#FFE3E3] font-bold text-[#1c1858]"
                 : "btn bg-base-100 font-bold"
             }
           >
@@ -86,17 +97,17 @@ const Navbar = () => {
             to="/medicines"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#d68853] font-bold text-[#1c1858]"
+                ? "btn bg-[#FFE3E3] font-bold text-[#1c1858]"
                 : "btn bg-base-100 font-bold"
             }
           >
             Shop
           </NavLink>
           <NavLink
-            to="/dashboard/cart"
+            to="/cart"
             className={({ isActive }) =>
               isActive
-                ? "btn bg-[#d68853] font-bold text-[#1c1858]"
+                ? "btn bg-[#FFE3E3] font-bold text-[#1c1858]"
                 : "btn bg-base-100 font-bold"
             }
           >
@@ -131,16 +142,16 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
-              <li className="btn bg-base-100 font-bold hover:bg-[#d68853] hover:text-[#1c1858]">
+              <li className="btn bg-base-100 font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858]">
                 <Link to="/update-profile">Update Profile</Link>
               </li>
-              <li className="btn bg-base-100 font-bold hover:bg-[#d68853] hover:text-[#1c1858]">
+              <li className="btn bg-base-100 font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858]">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
                 <button
                   onClick={logOut}
-                  className="btn bg-base-100 font-bold hover:bg-[#d68853] hover:text-[#1c1858]"
+                  className="btn bg-base-100 font-bold hover:bg-[#FFE3E3] hover:text-[#1c1858]"
                 >
                   Logout
                 </button>

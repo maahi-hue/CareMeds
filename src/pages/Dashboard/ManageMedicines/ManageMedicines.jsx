@@ -53,19 +53,19 @@ const ManageMedicines = () => {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-3xl mb-6">Manage Medicines</h2>
+    <div className="p-4 ">
+      <h2 className="text-4xl text-center font-bold mb-6">Medicines</h2>
 
       <button
-        className="btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        className="btn px-4 py-2 rounded hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold w-full sm:w-auto"
         onClick={() => setIsModalOpen(true)}
       >
         Add Medicine
       </button>
 
-      <div className="mt-6 overflow-x-auto">
+      <div className="mt-6 overflow-x-auto ">
         {medicines.length > 0 ? (
-          <table className="table-auto w-full text-left border-collapse">
+          <table className="w-full bg-white border border-gray-200">
             <thead>
               <tr>
                 <th className="px-4 py-2 border">Name</th>
@@ -98,10 +98,9 @@ const ManageMedicines = () => {
         )}
       </div>
 
-      {/* Add Medicine Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-3/4 md:w-1/2">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full sm:w-3/4 md:w-1/2">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-semibold">Add New Medicine</h3>
               <button
@@ -159,210 +158,113 @@ const ManageMedicines = () => {
               }}
               className="space-y-4"
             >
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="name"
-                    >
-                      Item Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Medicine Name"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="genericName"
-                    >
-                      Item Generic Name
-                    </label>
-                    <input
-                      type="text"
-                      name="genericName"
-                      placeholder="Generic Name"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="description"
-                    >
-                      Short Description
-                    </label>
-                    <textarea
-                      name="description"
-                      placeholder="Short description about the medicine"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="image"
-                    >
-                      Image Upload URL
-                    </label>
-                    <input
-                      type="text"
-                      name="image"
-                      placeholder="Image URL: https://example.com/image.jpg"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="category"
-                    >
-                      Category
-                    </label>
-                    <select
-                      name="category"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    >
-                      {categories.length > 0 ? (
-                        categories.map((category) => (
-                          <option key={category._id} value={category.name}>
-                            {category.name}
-                          </option>
-                        ))
-                      ) : (
-                        <option value="" disabled>
-                          No categories available
-                        </option>
-                      )}
-                    </select>
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="company"
-                    >
-                      Company
-                    </label>
-                    <input
-                      name="company"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
+                  <label
+                    className="block text-sm font-medium mb-2"
+                    htmlFor="name"
+                  >
+                    Item Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Medicine Name"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                  />
                 </div>
                 <div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="quantity"
-                    >
-                      Quantity
-                    </label>
-                    <input
-                      type="number"
-                      name="quantity"
-                      placeholder="Enter quantity (e.g., 50)"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="price"
-                    >
-                      Per Unit Price
-                    </label>
-                    <input
-                      type="number"
-                      step="0.01"
-                      name="price"
-                      placeholder="Enter price per unit (e.g., 10.50)"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="discount"
-                    >
-                      Discount Percentage
-                    </label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      name="discount"
-                      placeholder="Enter discount percentage (e.g., 5)"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="sellerName"
-                    >
-                      Seller Name
-                    </label>
-                    <input
-                      type="text"
-                      name="sellerName"
-                      value={user?.displayName || "Anonymous Seller"}
-                      readOnly
-                      className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="sellerImage"
-                    >
-                      Seller Image URL
-                    </label>
-                    <input
-                      type="text"
-                      name="sellerImage"
-                      value={
-                        user?.photoURL || "https://via.placeholder.com/150"
-                      }
-                      readOnly
-                      className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      htmlFor="sellerEmail"
-                    >
-                      Seller Email
-                    </label>
-                    <input
-                      type="email"
-                      name="sellerEmail"
-                      value={user?.email || "noemail@example.com"}
-                      readOnly
-                      className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md"
-                    />
-                  </div>
+                  <label
+                    className="block text-sm font-medium mb-2"
+                    htmlFor="genericName"
+                  >
+                    Item Generic Name
+                  </label>
+                  <input
+                    type="text"
+                    name="genericName"
+                    placeholder="Generic Name"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-sm font-medium mb-2"
+                    htmlFor="description"
+                  >
+                    Short Description
+                  </label>
+                  <textarea
+                    name="description"
+                    placeholder="Short description about the medicine"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-sm font-medium mb-2"
+                    htmlFor="image"
+                  >
+                    Image Upload URL
+                  </label>
+                  <input
+                    type="text"
+                    name="image"
+                    placeholder="Image URL: https://example.com/image.jpg"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-sm font-medium mb-2"
+                    htmlFor="category"
+                  >
+                    Category
+                  </label>
+                  <select
+                    name="category"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                  >
+                    {categories.length > 0 ? (
+                      categories.map((category) => (
+                        <option key={category._id} value={category.name}>
+                          {category.name}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="" disabled>
+                        No categories available
+                      </option>
+                    )}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className="block text-sm font-medium mb-2"
+                    htmlFor="company"
+                  >
+                    Company
+                  </label>
+                  <input
+                    name="company"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                  />
                 </div>
               </div>
-
-              <button
-                type="submit"
-                className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-              >
-                Add Medicine
-              </button>
+              <div className="mt-4">
+                <button
+                  type="submit"
+                  className="w-full py-2 px-4 rounded-md hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold"
+                >
+                  Add Medicine
+                </button>
+              </div>
             </form>
           </div>
         </div>

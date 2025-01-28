@@ -13,15 +13,14 @@ const AllUsers = () => {
     },
   });
 
-  const handleMakeAdmin = (user) => {
-    axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
+  const handleUpdateRole = (user, newRole) => {
+    axiosSecure.patch(`/users/${newRole}/${user._id}`).then((res) => {
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${user.name} is an Admin Now!`,
+          title: `${user.name} is now a ${newRole}!`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -45,7 +44,7 @@ const AllUsers = () => {
             refetch();
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "User has been removed.",
               icon: "success",
             });
           }
@@ -62,14 +61,13 @@ const AllUsers = () => {
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
-          {/* head */}
           <thead>
             <tr>
-              <th></th>
+              <th>#</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -78,27 +76,53 @@ const AllUsers = () => {
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>
+                <td>{user.role}</td>
+                <td className="flex gap-2">
                   {user.role === "admin" ? (
-                    "Admin"
+                    <button className="btn btn-disabled bg-gray-500" disabled>
+                      Admin
+                    </button>
                   ) : (
                     <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-lg bg-orange-500"
+                      onClick={() => handleUpdateRole(user, "admin")}
+                      className="btn hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold"
                     >
-                      <FaUsers
-                        className="text-white 
-                                        text-2xl"
-                      ></FaUsers>
+                      <FaUsers className="text-white text-2xl" />
+                      Make Admin
                     </button>
                   )}
-                </td>
-                <td>
+                  {user.role === "seller" ? (
+                    <button className="btn btn-disabled bg-gray-500" disabled>
+                      Seller
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleUpdateRole(user, "seller")}
+                      className="btn hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold"
+                    >
+                      <FaUsers className="text-white text-2xl" />
+                      Make Seller
+                    </button>
+                  )}
+
+                  {user.role === "user" ? (
+                    <button className="btn btn-disabled bg-gray-500" disabled>
+                      User
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleUpdateRole(user, "user")}
+                      className="btn hover:bg-[#FFE3E3] hover:text-[#1c1858] bg-[#789DBC] text-white font-bold"
+                    >
+                      <FaUsers className="text-white text-xl" />
+                      Make User
+                    </button>
+                  )}
                   <button
                     onClick={() => handleDeleteUser(user)}
-                    className="btn btn-ghost btn-lg"
+                    className="btn btn-ghost"
                   >
-                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                    <FaTrashAlt className="text-red-600" />
                   </button>
                 </td>
               </tr>
