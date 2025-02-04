@@ -8,6 +8,9 @@
 - **Password:** 12345aA
 
 ---
+## Purpose
+CareMeds is a a multi-vendor e-commerce platform specializing in the sale of medicines and healthcare products. The platform provide a seamless user experience for purchasing medications, submitting queries, and receiving expert advice using the MERN stack.
+
 
 ## Features
 
