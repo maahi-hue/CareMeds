@@ -22,11 +22,10 @@ CareMeds is a multi-vendor e-commerce platform specializing in the sale of medic
 ## 🚀 Features  
 
 ### 1️⃣ **Homepage**  
-- Interactive **navbar** with logo, links to Home, Shop, Cart, language selection, and user authentication options.  
-- **Product Slider** featuring advertised medicines (managed by admin).  
+- Interactive **navbar** with logo, links to Home, Shop, Cart and user authentication options.  
+- **Product Slider** featuring medicines.  
 - **Category Cards** displaying medicine categories, each leading to a categorized product listing.  
-- **Discounted Products Section** using a draggable Swiper.js slider.  
-- Additional sections related to healthcare services and customer support.  
+- **Discounted Products Section** using a draggable Swiper.js slider.   
 
 ### 2️⃣ **User Authentication**  
 - Users can **sign up/login** using email and password.  
